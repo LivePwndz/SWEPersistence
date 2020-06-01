@@ -18,6 +18,9 @@ public class Transcript {
     @Column(name = "degree_title", nullable = false)
     private String degreeTitle;
 
+    @OneToOne( mappedBy = "transcript")
+    private Student student;
+
     public Transcript(String degreeTitle) {
         this.degreeTitle = degreeTitle;
     }

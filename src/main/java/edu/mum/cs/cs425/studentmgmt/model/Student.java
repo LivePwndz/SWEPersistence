@@ -8,6 +8,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Entity
@@ -41,8 +42,11 @@ public class Student {
     private LocalDate dateOfEnrollment;
 
     @OneToOne( cascade = CascadeType.PERSIST)
-    @JoinColumn( name = "transcript_id")
+    @JoinColumn( name = "transcript_id", unique = true)
     private Transcript transcript;
+
+    @OneToMany(mappedBy = "classroom", cascade = CascadeType.PERSIST)
+    private List<StudentClassroom> studentClassrooms;
 
     public Student() {
        super();
